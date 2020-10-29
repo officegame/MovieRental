@@ -54,13 +54,17 @@ def clear():
     if name == 'nt':
         _ = system('cls')
     else: # posix
-        print('Type: ' + name)
         _ = system('clear')
 
 def run():
     while True:
         print_main_menu()
-        main_menu_answer = int(input(choice_messaging))
+        try:
+            main_menu_answer = int(input(choice_messaging))
+        except:
+            print(choice_invalid_messaging)
+            time.sleep(invalid_timer)
+            continue
 
         if main_menu_answer == 4:
             sys.exit()
@@ -73,7 +77,12 @@ def run():
         if main_menu_answer == 1:
             while True:
                 print_customer_management_menu()
-                sub_menu_answer = int(input(choice_messaging))
+                try:
+                    sub_menu_answer = int(input(choice_messaging))
+                except:
+                    print(choice_invalid_messaging)
+                    time.sleep(invalid_timer)
+                    continue
 
                 if sub_menu_answer == 5:
                     break
@@ -95,7 +104,12 @@ def run():
         elif main_menu_answer == 2:
             while True:
                 print_movie_management_menu()
-                sub_menu_answer = int(input(choice_messaging))
+                try:
+                    sub_menu_answer = int(input(choice_messaging))
+                except:
+                    print(choice_invalid_messaging)
+                    time.sleep(invalid_timer)
+                    continue
 
                 if sub_menu_answer == 5:
                     break
@@ -117,7 +131,12 @@ def run():
         elif main_menu_answer == 3:
             while True:
                 print_rentals_menu()
-                sub_menu_answer = int(input(choice_messaging))
+                try:
+                    sub_menu_answer = int(input(choice_messaging))
+                except:
+                    print(choice_invalid_messaging)
+                    time.sleep(invalid_timer)
+                    continue
 
                 if sub_menu_answer == 3:
                     break
