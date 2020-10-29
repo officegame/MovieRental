@@ -21,7 +21,6 @@ def call_add_customer():
 
     fields = ['first_name', 'last_name', 'address', 'email']
     rows = [[first_name, last_name, address, email]]
-
     
     if path.isfile('data/customers.csv'):
         with open('data/customers.csv') as csv_file:
