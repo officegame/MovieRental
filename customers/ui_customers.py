@@ -2,9 +2,10 @@ from os import system
 import time
 import ui.main as ui
 import csv
+from os import path
 
 def call_add_customer():
-    ui.print_header()
+    ui.clear()
     print('Add Customer')
     print()
     first_name = input("First Name: ")
@@ -14,6 +15,21 @@ def call_add_customer():
 
     fields = ['first_name', 'last_name', 'address', 'email']
     rows = [[first_name, last_name, address, email]]
+
+    
+    if path.isfile('data/customers.csv'):
+        with open('data/customers.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count == 0:
+                    line_count += 1
+                else:
+                    if email == row[3]:
+                        print("Duplicate Customer Error")
+                        time.sleep(ui.invalid_timer)
+                        return
+                    line_count += 1
 
     with open("data/customers.csv", 'a') as csvfile:
        # creating a csv writer object  
@@ -25,10 +41,10 @@ def call_add_customer():
 
        # writing the data rows  
        csvwriter.writerows(rows)
-    
-    system("clear")
+
+    ui.clear()
     print("New customer added")
-    time.sleep(3)
+    time.sleep(ui.invalid_timer)
 
 
 def call_edit_customer():
