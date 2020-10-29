@@ -3,6 +3,7 @@ import time
 import ui.main as ui
 import csv
 from os import path
+import re
 
 def call_add_customer():
     ui.clear()
@@ -12,6 +13,11 @@ def call_add_customer():
     last_name = input("Last Name: ")
     address = input("Address: ")
     email = input("Email: ")
+
+    if not check_email(email):
+        print('Invalid email')
+        time.sleep(ui.invalid_timer)
+        return
 
     fields = ['first_name', 'last_name', 'address', 'email']
     rows = [[first_name, last_name, address, email]]
@@ -55,3 +61,13 @@ def call_find_customer():
 
 def call_delete_customer():
     pass
+
+def check_email(email):
+    regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+    
+    # pass the regular expression 
+    # and the string in search() method 
+    if(re.search(regex,email)):  
+        return True  
+    else:  
+        return False
