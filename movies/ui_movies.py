@@ -1,6 +1,7 @@
 import time
 import ui.main as ui
 import csv
+from os import path
 
 def call_add_movie():
     ui.clear()
@@ -18,20 +19,21 @@ def call_add_movie():
     fields = ['movie_title', 'movie_release_date', 'rating', 'number_of_units']
     rows = [[movie_title, movie_release_date, rating, number_of_units]]
     
-    with open('data/movie.csv', 'a+' ) as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
-        for row in csv_reader:
-            if line_count == 0:
-                line_count += 1
-            else:
-                if movie_title == row[0]:
-                    print("Duplicate Movie Error")
-                    time.sleep(ui.invalid_timer)
-                    return
-                line_count += 1            
+    if path.isfile('data/movie.csv'):
+        with open('data/movie.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count == 0:
+                    line_count += 1
+                else:
+                    if movie_title == row[0]:
+                        print("Duplicate Movie Error")
+                        time.sleep(ui.invalid_timer)
+                        return
+                    line_count += 1            
 
-    with open("data/movie.csv", 'a+') as csvfile:
+    with open("data/movie.csv", 'a') as csvfile:
        # creating a csv writer object  
        csvwriter = csv.writer(csvfile) 
 
