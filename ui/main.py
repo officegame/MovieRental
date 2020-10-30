@@ -23,8 +23,9 @@ def print_customer_management_menu():
     print("1. Add Customer")
     print("2. Edit Customer")
     print("3. Find Customer")
-    print("4. Delete Customer")
-    print("5. Back to main menu")
+    print("4. Find Customers")
+    print("5. Delete Customer")
+    print("6. Back to main menu")
     print()
 
 def print_movie_management_menu():
@@ -84,10 +85,10 @@ def run():
                     time.sleep(invalid_timer)
                     continue
 
-                if sub_menu_answer == 5:
+                if sub_menu_answer == 6:
                     break
 
-                if sub_menu_answer < 1 or sub_menu_answer > 4:
+                if sub_menu_answer < 1 or sub_menu_answer > 5:
                     print(choice_invalid_messaging)
                     time.sleep(invalid_timer)
                     continue
@@ -99,6 +100,8 @@ def run():
                 elif sub_menu_answer == 3:
                     ui_customer.call_find_customer()
                 elif sub_menu_answer == 4:
+                    ui_customer.call_find_customers()
+                elif sub_menu_answer == 5:
                     ui_customer.call_delete_customer()
 
         elif main_menu_answer == 2:
