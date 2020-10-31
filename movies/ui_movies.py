@@ -87,7 +87,7 @@ def call_edit_movie():
         time.sleep(ui.invalid_timer)
 
     fields = ['movie_title', 'movie_release_date', 'rating', 'number_of_units']
-    rows = [[movie_title, movie_release_date, rating, number_of_units]]
+    movies[menu_selection -1] = [movie_title, movie_release_date, rating, number_of_units]
     
     with open("data/movie.csv", 'w+') as csvfile:
        # creating a csv writer object  
