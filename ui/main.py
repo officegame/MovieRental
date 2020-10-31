@@ -23,8 +23,9 @@ def print_customer_management_menu():
     print("1. Add Customer")
     print("2. Edit Customer")
     print("3. Find Customer")
-    print("4. Delete Customer")
-    print("5. Back to main menu")
+    print("4. Find Customers")
+    print("5. Delete Customer")
+    print("6. Back to main menu")
     print()
 
 def print_movie_management_menu():
@@ -32,8 +33,9 @@ def print_movie_management_menu():
     print("1. Add Movie")
     print("2. Edit Movie")
     print("3. Find Movie")
-    print("4. Delete Movie")
-    print("5. Back to main menu")
+    print("4. List All Movies")
+    print("5. Delete Movie")
+    print("6. Back to main menu")
     print()
 
 def print_rentals_menu():
@@ -84,10 +86,10 @@ def run():
                     time.sleep(invalid_timer)
                     continue
 
-                if sub_menu_answer == 5:
+                if sub_menu_answer == 6:
                     break
 
-                if sub_menu_answer < 1 or sub_menu_answer > 4:
+                if sub_menu_answer < 1 or sub_menu_answer > 5:
                     print(choice_invalid_messaging)
                     time.sleep(invalid_timer)
                     continue
@@ -99,6 +101,8 @@ def run():
                 elif sub_menu_answer == 3:
                     ui_customer.call_find_customer()
                 elif sub_menu_answer == 4:
+                    ui_customer.call_find_customers()
+                elif sub_menu_answer == 5:
                     ui_customer.call_delete_customer()
 
         elif main_menu_answer == 2:
@@ -111,7 +115,7 @@ def run():
                     time.sleep(invalid_timer)
                     continue
 
-                if sub_menu_answer == 5:
+                if sub_menu_answer == 6:
                     break
 
                 if sub_menu_answer < 1 or sub_menu_answer > 4:
@@ -126,6 +130,8 @@ def run():
                 elif sub_menu_answer == 3:
                     ui_movie.call_find_movie()
                 elif sub_menu_answer == 4:
+                    ui_movie.call_find_movies()
+                elif sub_menu_answer == 5:
                     ui_movie.call_delete_movie()
 
         elif main_menu_answer == 3:
