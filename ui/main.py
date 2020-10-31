@@ -32,8 +32,9 @@ def print_movie_management_menu():
     print("1. Add Movie")
     print("2. Edit Movie")
     print("3. Find Movie")
-    print("4. Delete Movie")
-    print("5. Back to main menu")
+    print("4. List All Movies")
+    print("5. Delete Movie")
+    print("6. Back to main menu")
     print()
 
 def print_rentals_menu():
@@ -111,7 +112,7 @@ def run():
                     time.sleep(invalid_timer)
                     continue
 
-                if sub_menu_answer == 5:
+                if sub_menu_answer == 6:
                     break
 
                 if sub_menu_answer < 1 or sub_menu_answer > 4:
@@ -126,6 +127,8 @@ def run():
                 elif sub_menu_answer == 3:
                     ui_movie.call_find_movie()
                 elif sub_menu_answer == 4:
+                    ui_movie.call_find_movies()
+                elif sub_menu_answer == 5:
                     ui_movie.call_delete_movie()
 
         elif main_menu_answer == 3:

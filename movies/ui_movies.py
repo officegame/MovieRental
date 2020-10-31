@@ -55,5 +55,24 @@ def call_edit_movie():
 def call_find_movie():
     pass
 
+def call_find_movies():
+    ui.clear()
+    print('Find Movies')
+    print()
+
+    if path.isfile('data/movie.csv'):
+        with open('data/movie.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count == 0:
+                    line_count += 1
+                else:
+                    print(line_count, end = '')
+                    print(' ' + row[0] + ' ' + row[1] + ' ' + row[2] + ' ' + row[3])
+                    line_count += 1
+            print()
+            _ = input('Press enter to continue')
+
 def call_delete_movie():
     pass
