@@ -108,7 +108,33 @@ def call_edit_customer():
     time.sleep(ui.invalid_timer)
     
 def call_find_customer():
-    pass
+    ui.clear()
+    print('Find Customer')
+    print()
+
+    customer_email = input('Email: ')
+
+    if path.isfile('data/customers.csv'):
+        with open('data/customers.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            found = False
+            for row in csv_reader:
+                if line_count == 0:
+                    line_count += 1
+                else:
+                    if row[3] == customer_email:
+                        print()
+                        print(line_count, end = '')
+                        print(' ' + row[0] + ' ' + row[1] + ' ' + row[2] + ' ' + row[3])
+                        print()
+                        found = True
+                        _ = input('Press enter to continue')
+                    line_count += 1
+    
+    if found == False:
+        print('Customer not found')
+        time.sleep(ui.invalid_timer)
 
 def call_find_customers():
     ui.clear()
