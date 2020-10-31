@@ -2,6 +2,7 @@ import time
 import ui.main as ui
 import csv
 from os import path
+import re
 
 def call_add_movie():
     ui.clear()
