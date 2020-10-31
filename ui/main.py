@@ -115,7 +115,7 @@ def run():
                 if sub_menu_answer == 6:
                     break
 
-                if sub_menu_answer < 1 or sub_menu_answer > 4:
+                if sub_menu_answer < 1 or sub_menu_answer > 5:
                     print(choice_invalid_messaging)
                     time.sleep(invalid_timer)
                     continue
