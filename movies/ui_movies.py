@@ -1,7 +1,9 @@
+from os import system
 import time
 import ui.main as ui
 import csv
 from os import path
+import re
 
 def call_add_movie():
     ui.clear()
@@ -56,4 +58,46 @@ def call_find_movie():
     pass
 
 def call_delete_movie():
-    pass
+    ui.clear()
+    print('Delete Movie')
+    print()
+
+    movies = []
+    if path.isfile('data/movie.csv'):
+        with open('data/movie.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count == 0:
+                    line_count += 1
+                else:
+                    print(line_count, end = '')
+                    print(' ' + row[0] + ' ' + row[1] + ' ' + row[2] + ' ' + row[3])
+                    movies.append(row)
+                    line_count += 1
+
+    print()
+    try:
+        menu_selection = int(input('Select movie to delete: '))
+    except:
+        print(ui.choice_invalid_messaging)
+        time.sleep(ui.invalid_timer)
+        return
+
+    fields = ['movie_title', 'movie_release_date', 'rating', 'number_of_units']
+    movies.pop(menu_selection - 1)
+
+    with open("data/movie.csv", 'w+') as csvfile:
+       # creating a csv writer object  
+       csvwriter = csv.writer(csvfile) 
+
+       if csvfile.tell() == 0:
+           # writing the fields  
+           csvwriter.writerow(fields)
+
+       # writing the data rows  
+       csvwriter.writerows(movies)
+
+    ui.clear()
+    print('Movie deleted')
+    time.sleep(ui.invalid_timer)
