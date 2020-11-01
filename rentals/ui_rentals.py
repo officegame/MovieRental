@@ -115,7 +115,7 @@ def call_rent_movie():
 
 def call_return_movie():
     ui.clear()
-    print('Delete Movie')
+    print('Return Movie')
     print()
 
     rentals = []
@@ -174,7 +174,7 @@ def call_return_movie():
     
     print()
     try:
-        menu_selection = int(input('Select movie to return: '))
+        menu_selection = int(input('Confirm movie that was returned: '))
     except:
         print(ui.choice_invalid_messaging)
         time.sleep(ui.invalid_timer)
