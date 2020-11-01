@@ -114,4 +114,46 @@ def call_rent_movie():
     
 
 def call_return_movie():
-    pass
+    ui.clear()
+    print('Delete Movie')
+    print()
+
+    rentals = []
+    if path.isfile('data/rentals.csv'):
+        with open('data/rentals.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count == 0:
+                    line_count += 1
+                else:
+                    print(line_count, end = '')
+                    print(' ' + row[0] + ' ' + row[1] + ' ' + row[2])
+                    rentals.append(row)
+                    line_count += 1
+
+    print()
+    try:
+        menu_selection = int(input('Select movie to return: '))
+    except:
+        print(ui.choice_invalid_messaging)
+        time.sleep(ui.invalid_timer)
+        return
+
+    fields = ['movie_rented', 'customer_email', 'rented_on']
+    rentals.pop(menu_selection - 1)
+
+    with open("data/rentals.csv", 'w+') as csvfile:
+       # creating a csv writer object  
+       csvwriter = csv.writer(csvfile) 
+
+       if csvfile.tell() == 0:
+           # writing the fields  
+           csvwriter.writerow(fields)
+
+       # writing the data rows  
+       csvwriter.writerows(rentals)
+
+    ui.clear()
+    print('Movie returned')
+    time.sleep(ui.invalid_timer)
