@@ -65,7 +65,6 @@ def call_rent_movie():
         with open('data/rentals.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             line_count = 0
-            rented = False
             
             for row in csv_reader:
                 if line_count == 0:
