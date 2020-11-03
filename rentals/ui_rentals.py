@@ -139,8 +139,12 @@ def call_return_movie():
         time.sleep(ui.invalid_timer)
         return
 
-    fields = ['movie_rented', 'customer_email', 'rented_on']
-    rentals.pop(return_selection - 1)
+    fields = ['movie_rented', 'customer_email', 'rented_on', 'returned_on']
+
+    if len(rentals) > 2:
+        rentals[return_selection - 1][3] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    else:
+        rentals[return_selection - 1].append(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
 
     with open("data/rentals.csv", 'w+') as csvfile:
        # creating a csv writer object  
@@ -154,45 +158,6 @@ def call_return_movie():
        csvwriter.writerows(rentals)
 
     ui.clear()
-    print('Rental Record Updated. Please confirm movie has been returned')
-    print()
-
-    movies = []
-    if path.isfile('data/movie.csv'):
-        with open('data/movie.csv') as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0
-            for row in csv_reader:
-                if line_count == 0:
-                    line_count += 1
-                else:
-                    print(line_count, end = '')
-                    print(' ' + row[0] + ' ' + row[1] + ' ' + row[2] + ' ' + row[3])
-                    movies.append(row)
-                    line_count += 1
-    
-    print()
-    try:
-        menu_selection = int(input('Confirm movie that was returned: '))
-    except:
-        print(ui.choice_invalid_messaging)
-        time.sleep(ui.invalid_timer)
-        return
-
-    fields = ['movie_title', 'movie_release_date', 'rating', 'number_of_units']
-    movies[menu_selection -1][3] = str(int(movies[menu_selection -1][3]) + 1)
-    
-    with open("data/movie.csv", 'w+') as csvfile:
-       # creating a csv writer object  
-       csvwriter = csv.writer(csvfile) 
-
-       if csvfile.tell() == 0:
-           # writing the fields  
-           csvwriter.writerow(fields)
-
-       # writing the data rows  
-       csvwriter.writerows(movies)
-
-    ui.clear()
-    print('Movie updated')
+    print('Movie returned')
     time.sleep(ui.invalid_timer)
+    print()
