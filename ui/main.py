@@ -42,7 +42,8 @@ def print_rentals_menu():
     print_header()
     print("1. Rent Movie")
     print("2. Return Movie")
-    print("3. Back to main menu")
+    print("3. List All Rentals")
+    print("4. Back to main menu")
     print()
 
 def print_header():
@@ -144,10 +145,10 @@ def run():
                     time.sleep(invalid_timer)
                     continue
 
-                if sub_menu_answer == 3:
+                if sub_menu_answer == 4:
                     break
 
-                if sub_menu_answer < 1 or sub_menu_answer > 2:
+                if sub_menu_answer < 1 or sub_menu_answer > 3:
                     print(choice_invalid_messaging)
                     time.sleep(invalid_timer)
                     continue
@@ -156,3 +157,6 @@ def run():
                     ui_rental.call_rent_movie()
                 elif sub_menu_answer == 2:
                     ui_rental.call_return_movie()
+                elif sub_menu_answer == 3:
+                    ui_rental.call_list_rentals()
+                

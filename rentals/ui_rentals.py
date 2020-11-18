@@ -115,3 +115,22 @@ def call_rent_movie():
 
 def call_return_movie():
     pass
+
+def call_list_rentals():
+    ui.clear()
+    print('All Rented Movies')
+    print()
+
+    if path.isfile('data/rentals.csv'):
+        with open('data/rentals.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count == 0:
+                    line_count += 1
+                else:
+                    print(line_count, end = '')
+                    print(' ' + row[0])
+                    line_count += 1
+            print()
+            _ = input('Press enter to continue')
